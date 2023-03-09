@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--Bootstrap-->
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <!--JQuery-->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <!--Font-Awesome-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+ 
   
   <title>Document</title>
 </head>
@@ -17,14 +17,16 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1>Movie Finder</h1>
-        <form>
-          <button>Search</button><input type="text">
+        <h1 class="text-center">Movie Finder</h1>
+        <form onsubmit="searchMovies(event)">
+          <button type="submit">Search</button><input type="text" placeholder="Search For Movies">
         </form>
       </div>
-      <div class="col-12">
-        <img id="poster" alt="">
-        <h2><span id="title"></span></h2>
+      <div id="search-results" class="col-12 scrollable-row">
+        <img class="movie-item" id="poster" alt="">
+        <p><span id="title"></span></p>
+        <p><span id="year"></span></p>
+        <p><span id="type"></span></p>
       </div>
     </div>
   </div>

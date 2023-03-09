@@ -1,60 +1,38 @@
-// var httpRequest = new XMLHttpRequest();
-            
-// httpRequest.onload = function() {
-  
-//   if (httpRequest.readyState === XMLHttpRequest.DONE) {
-//     if (httpRequest.status === 200) {
-//       console.log(httpRequest.responseText);
-//       var movies = JSON.parse(httpRequest.responseText);
-//       console.log(movies);
-//       document.getElementById('poster').innerHTML = movies.Poster;
-//       document.getElementById('title').innerHTML = movies.Title;
-//       console.log(search);
-//     } else {
-//       console.log(httpRequest.statusText);
-//     }
-//   }
-// };
-
-// httpRequest.onreadystatechange = function() {
-//   console.log('Ready state: ' + httpRequest.readyState + ', status: ' + httpRequest.status);
-// };
-
-
-// httpRequest.onerror = function() {
-//   console.log(httpRequest.statusText);
-// }
-
-
-// httpRequest.open('GET', 'https://www.omdbapi.com/?s=' + search + '&plot=short&apikey=73740781');
-// httpRequest.send();
-var httpRequest = new XMLHttpRequest();
-            
+var httpRequest = new XMLHttpRequest();           
 httpRequest.onload = function() {
   if (httpRequest.readyState === XMLHttpRequest.DONE) {
     if (httpRequest.status === 200) {
-      console.log(httpRequest.responseText);
-      var movies = JSON.parse(httpRequest.responseText);
-      console.log(movies);
+      //console.log(httpRequest.responseText);
+      var response = JSON.parse(httpRequest.responseText);
+      console.log(response);
+      //document.getElementById('poster').src = response.Search[0].Poster;
+      for (let i = 0; i < response.Search.length; i++) {
+        
+        const movie = response.Search[i];
+        var results = $('div');
+        results.append(
+          '<img src="' + movie.Poster + '" alt="movie poster">' +
+          '<h3>Title: ' + movie.Title + '</h3>' +
+          '<p>' + movie.Year + '</p>' +
+          '<p>' + movie.Type + '</p>'
+        );
+      }
       
     } else {
       console.log(httpRequest.statusText);
     }
   }
 }
-
 httpRequest.onerror = function() {
   console.log(httpRequest.statusText);
 }
-function searchMovies() {
-  const search = $('input').val();
-  if (search) {
-    httpRequest.open('GET', 'https://www.omdbapi.com/?s=' + 'frozen' + '&plot=short&apikey=b7da8d63');
-    httpRequest.send();
-    console.log(search);
+var searchMovies = function (e) {
+  e.preventDefault();
+  var searchResult = document.querySelector("input").value;
+  
+  if (searchResult) {
+    httpRequest.open('GET', 'https://www.omdbapi.com/?s=' + searchResult + '&plot=short&apikey=73740781');
+    httpRequest.send(null);
+    
   }
 }
-
-$(document).ready(function() {
-  $('button').on('click', searchMovies());
-});
