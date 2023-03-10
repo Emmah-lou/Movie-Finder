@@ -15,8 +15,8 @@ var searchMovies = function (e) {
             const movie = response.Search[i];
             results.append(
               '<div class="movieItem">' +
-              '<img class="img-fluid" src="' + movie.Poster + '" alt="~Movie Poster Not Found~">' +
-              '<h3>Title: ' + movie.Title + '</h3>' +
+              '<a href="https://www.imdb.com/title/' + movie.imdbID + '" target="_blank"><img class="img-fluid" src="' + movie.Poster + '" alt="~Movie Poster Not Found~"></a>' +
+              '<h3>Title: <br>' + movie.Title + '</h3>' +
               '<p>Year: ' + movie.Year + '</p>' +
               '<p>Type: ' + movie.Type + '</p>' +
               '</div>'
